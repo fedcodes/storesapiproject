@@ -1,3 +1,4 @@
+import os
 from flask import Flask
 from flask_restful import Api
 from flask_jwt import JWT
@@ -12,7 +13,7 @@ from db import db
 #Header for every app
 app = Flask(__name__)
 #SQLAlchemy config
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db' #this tells it what kind of database it is.
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'sqlite:///data.db') #this tells it what kind of database it is.
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 #this creates the key to your app for a secure token.
 app.secret_key = 'jose'
